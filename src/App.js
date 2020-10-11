@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from 'react-three-fiber';
+import { OrbitControls } from '@react-three/drei';
+import * as canvasUtils from 'canvas-sketch-util';
 
-function App() {
+import Box from './Box';
+
+const { random } = canvasUtils;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="three-fiber-playground">
+      <Canvas orthographic camera={{ zoom: 30, position: [10, 10, 10] }}>
+        <ambientLight />
+        <directionalLight position={[0, 0, 2]} />
+        {Array(20)
+          .fill('')
+          .map((_, index) => (
+            <Box
+              key={index}
+              position={[random.gaussian() * 5, random.gaussian() * 5, random.gaussian() * 5]}
+            />
+          ))}
+
+        <OrbitControls />
+      </Canvas>
     </div>
   );
 }
-
-export default App;

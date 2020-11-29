@@ -1,11 +1,11 @@
 import React from 'react';
 
-import SparkText from './components/SparkText';
+import RippleBlend from './components/RippleBlend2';
 
 export default function App() {
   return (
     <div className="three-fiber-playground">
-      <SparkText />
+      <RippleBlend />
     </div>
   );
 }
